@@ -23,13 +23,27 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.cursor = 'none';
     });
 
+    // Move sandal with mouse or touch and center it
+    function moveSandal(x, y) {
+        const adjustedX = x - (sandal.offsetWidth / 2);
+        const adjustedY = y - (sandal.offsetHeight / 2);
+        sandal.style.left = adjustedX + 'px';
+        sandal.style.top = adjustedY + 'px';
+    }
+
+    // Mouse move event
     document.addEventListener('mousemove', function(e) {
-        const x = e.clientX - (sandal.offsetWidth / 2);
-        const y = e.clientY - (sandal.offsetHeight / 2);
-        sandal.style.left = x + 'px';
-        sandal.style.top = y + 'px';
+        moveSandal(e.clientX, e.clientY);
     });
 
+    // Touch move event for mobile devices
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault(); // Prevent scrolling while playing
+        const touch = e.touches[0];
+        moveSandal(touch.clientX, touch.clientY);
+    });
+
+    // Shoot event (mouse down)
     document.addEventListener('mousedown', function() {
         if (gameStarted) {
             shootSound.play();
@@ -37,7 +51,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Shoot event (touch start)
+    document.addEventListener('touchstart', function() {
+        if (gameStarted) {
+            shootSound.play();
+            isSandalClicked = true;
+        }
+    });
+
+    // Reset sandal click status after mouse up
     document.addEventListener('mouseup', function() {
+        isSandalClicked = false;
+    });
+
+    // Reset sandal click status after touch end
+    document.addEventListener('touchend', function() {
         isSandalClicked = false;
     });
 
