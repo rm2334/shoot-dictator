@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    cursor: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1d2b64 0%, #f8cdda 100%);
+    font-family: 'Arial', sans-serif;
+}
+
+#gameArea {
+    position: relative;
+    width: 900px;
+    height: 700px;
+    border: 5px solid #ffffff;
+    border-radius: 10px;
+    background: #000000;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+#startButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #1d2b64;
+    border: 3px solid #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#startButton:hover {
+    background-color: #f8cdda;
+}
+
+.target {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-size: cover; /* Ensure the background image covers the entire target */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    border-radius: 50%;
+    bottom: 0;
+    animation: moveUp 5s linear infinite, fall 5s linear infinite;
+    transition: background-image 0.3s ease; /* Smooth transition for background image change */
+}
+
+.blood {
+    background-image: url(blood.png) !important; /* Use !important to override the initial background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#target1 {
+    background-image: url(target1.png);
+}
+#target2 {
+    background-image: url(target2.png);
+}
+#target3 {
+    background-image: url(target3.png);
+}
+#target4 {
+    background-image: url(target1.png);
+}
+#target5 {
+    background-image: url(target3.png);
+}
+
+#sandal {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    cursor: none;
+    display: none;
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+@keyframes moveUp {
+    0% { bottom: 0; }
+    50% { bottom: 80%; }
+    100% { bottom: 0; }
+}
